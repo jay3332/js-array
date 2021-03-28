@@ -70,3 +70,13 @@ class JSArray(list):
             return self.index(self.find(key))
         except ValueError:
             return None
+
+    def splice(self, start, delete_count=None, *items):
+        if not delete_count:
+            delete_count = self.length-start
+
+        total = start + delete_count
+        removed = self[start:total]
+        self[start:total] = items
+
+        return removed
